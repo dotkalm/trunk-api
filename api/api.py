@@ -27,7 +27,8 @@ def save_picture(form_picture):
 
 @api.route('/', methods=["POST"])
 def create_junk():
-    print(request)
+    print(request, '<--request')
+    print(request.files, '<--request.files')
     pay_file = request.files
     payload = request.form.to_dict()
     dict_file = pay_file.to_dict()
@@ -45,6 +46,6 @@ def create_junk():
 def get_all_items():
     try: 
         items = [model_to_dict(item) for item in models.Junk.select()]
-        return jsonify(data=items, status={"code": 200, "message":"success"})
+        return jsonify(items)
     except models.DoesNotExist:
         return jsonify(data={}, status={"code": 401, "message": "seems to be a problem retrieving"})
