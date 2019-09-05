@@ -7,7 +7,7 @@ import datetime
 import os
 
 #DATABASE = connect(os.environ.get('DATABASE_URL'))
-DATABASE = SqliteDatabase('junk.sqlite')
+DATABASE = SqliteDatabase('junk2.sqlite')
 
 #tags = db.Table('tags',
  #   db.Column('location_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True),
@@ -21,13 +21,13 @@ class User(UserMixin, Model):
        database = DATABASE 
 
 class Junk(Model):
-    average_red = IntegerField()
-    average_green = IntegerField()
-    average_blue = IntegerField()
+    #average_red = IntegerField()
+    #average_green = IntegerField()
+    #average_blue = IntegerField()
     image = CharField()
     description = TextField()
-    author = ForeignKeyField(User, backref='junk')
-    price = IntegerField()
+    #author = ForeignKeyField(User, backref='junk')
+    price = FloatField()
     class Meta:
        database = DATABASE 
 
