@@ -7,7 +7,7 @@ import datetime
 import os
 
 #DATABASE = connect(os.environ.get('DATABASE_URL'))
-DATABASE = SqliteDatabase('items.sqlite')
+DATABASE = SqliteDatabase('items8.sqlite')
 
 #tags = db.Table('tags',
  #   db.Column('location_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True),
@@ -15,12 +15,13 @@ DATABASE = SqliteDatabase('items.sqlite')
 #)
 class User(UserMixin, Model):
    username = CharField()
-   email = CharField()
-   password = CharField()
+   uid = CharField()
    class Meta:
        database = DATABASE 
+
 class Bin(Model):
     size = CharField()
+    userId = ForeignKeyField(User, backref='user')
     class Meta:
         database = DATABASE
 

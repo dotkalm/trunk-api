@@ -4,7 +4,7 @@ from flask_login import LoginManager
 import os
 import models
 from flask import g
-
+from api.user import user
 from api.api import api
 DEBUG = True
 PORT = 8000
@@ -25,9 +25,9 @@ def load_user(userid):
       return None
 
 CORS(api, origins=['http://localhost:3000'], supports_credentials=True)
-#CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
 
-#app.register_blueprint(user)
+app.register_blueprint(user)
 app.register_blueprint(api)
 
 @app.before_request
