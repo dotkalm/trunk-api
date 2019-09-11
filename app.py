@@ -14,7 +14,7 @@ login_manager = LoginManager()
 
 # Initialize an instance of the Flask class.
 # This starts the website!
-app = Flask(__name__, static_url_path=os.environ['DATABASE_URL'], static_folder="static")
+app = Flask(__name__, static_url_path='', static_folder="static")
 app.secret_key = 'BARBEQUE SAUCE'
 login_manager.init_app(app)
 
