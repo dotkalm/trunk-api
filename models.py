@@ -6,7 +6,7 @@ from playhouse.db_url import connect
 import datetime
 import os
 
-DATABASE = connect(os.environ.get('DATABASE_URL'))
+DATABASE = connect(os.environ.get(DATABASE_URL))
 #DATABASE = SqliteDatabase('trunksale2.sqlite')
 
 #tags = db.Table('tags',
