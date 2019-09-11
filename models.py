@@ -7,7 +7,7 @@ import datetime
 import os
 
 #DATABASE = connect(os.environ.get('DATABASE_URL'))
-DATABASE = SqliteDatabase('itemsWithColor.sqlite')
+DATABASE = SqliteDatabase('itemsWithColor4.sqlite')
 
 #tags = db.Table('tags',
  #   db.Column('location_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True),
