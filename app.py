@@ -24,8 +24,8 @@ def load_user(userid):
    except models.DoesNotExist:
       return None
 
-CORS(api, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(api, origins=['http://localhost:3000', 'https://things-in-my-car-trunk-sale.herokuapp.com/'], supports_credentials=True)
+CORS(user, origins=['http://localhost:3000', 'https://things-in-my-car-trunk-sale.herokuapp.com/'], supports_credentials=True)
 
 app.register_blueprint(user)
 app.register_blueprint(api)
@@ -46,6 +46,9 @@ def after_request(response):
 def index():
     return 'junk in my trunk'
 
+if 'ON_HEROKU' in os.environ:
+    print('hitting ')
+    models.initialize()
 
 # Run the app when the program starts!
 if __name__ == '__main__':
