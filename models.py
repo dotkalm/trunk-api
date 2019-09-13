@@ -6,13 +6,10 @@ from playhouse.db_url import connect
 import datetime
 import os
 
-#DATABASE = connect(os.environ.get('DATABASE_URL'))
-DATABASE = SqliteDatabase('trunksale4.sqlite')
+#DATABASE = PostgresqlDatabase('junk_in_my_trunk')
+DATABASE = connect(os.environ.get('DATABASE_URL'))
+#DATABASE = SqliteDatabase('trunksale4.sqlite')
 
-#tags = db.Table('tags',
- #   db.Column('location_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True),
-  #  db.Column('junk_id', db.Integer, db.ForeignKey('page.id'), primary_key=True)
-#)
 class User(UserMixin, Model):
    username = CharField()
    id = IntegerField(primary_key=True)
