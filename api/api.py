@@ -9,7 +9,7 @@ from playhouse.shortcuts import model_to_dict
 api = Blueprint('api', 'api2', url_prefix="/api/v1")
 # added api2 to second arg in above line bc was getting errors from 'api'
 
-def save_picture(form_picture):
+def color_value(form_picture):
    output_size = (1, 1)
    i = Image.open(form_picture)
    i.thumbnail(output_size)
@@ -38,7 +38,7 @@ def create_junk():
     dict_file = pay_file.to_dict()
     print(payload, '<-- payload')
     print(dict_file, '<--dict_file')
-    color = save_picture(dict_file['file'])
+    color = color_value(dict_file['file'])
     payload['average_red'] = color[0]
     payload['average_green'] = color[1]
     payload['average_blue'] = color[2]
@@ -55,6 +55,12 @@ def get_all_items():
         return jsonify(data=items, status={"code": 200, "message":"success"})
     except models.DoesNotExist:
         return jsonify(data={}, status={"code": 401, "message": "seems to be a problem retrieving"})
+
+@api.route('/<id>', methods=["DELETE"])
+def delete_shrub(id):
+    query = models.Item.delete().where(models.Item.id == id)
+    query.execute()
+    return jsonify(data="delete successful", status={"code": 200, "message":"resource succesfully deleted"})
 
 @api.route('/bins/', methods=["GET"])
 def get_all_bins():
