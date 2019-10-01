@@ -7,8 +7,8 @@ import datetime
 import os
 
 #DATABASE = PostgresqlDatabase('junk_in_my_trunk')
-DATABASE = connect(os.environ.get('DATABASE_URL'))
-#DATABASE = SqliteDatabase('trunksale4.sqlite')
+#DATABASE = connect(os.environ.get('DATABASE_URL'))
+DATABASE = SqliteDatabase('trunksale6.sqlite')
 
 class User(UserMixin, Model):
    username = CharField()
@@ -24,6 +24,8 @@ class Bin(Model):
         database = DATABASE
 
 class Item(Model):
+    fileName1 = CharField()
+    fileName2 = CharField()
     average_red = IntegerField()
     average_green = IntegerField()
     average_blue = IntegerField()

@@ -66,6 +66,7 @@ def delete_shrub(id):
 def get_all_bins():
     try:
         bins = [model_to_dict(bin) for bin in models.Bin.select()]
+        print(bins)
         return jsonify(data=bins, status={"code": 200, "message":"success"})
     except models.DoesNotExist:
         return jsonify(data={}, status={"code": 401, "message": "oh no"})
