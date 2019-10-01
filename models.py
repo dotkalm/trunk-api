@@ -8,7 +8,7 @@ import os
 
 #DATABASE = PostgresqlDatabase('junk_in_my_trunk')
 #DATABASE = connect(os.environ.get('DATABASE_URL'))
-DATABASE = SqliteDatabase('trunksale6.sqlite')
+DATABASE = SqliteDatabase('trunksale8.sqlite')
 
 class User(UserMixin, Model):
    username = CharField()
@@ -16,6 +16,9 @@ class User(UserMixin, Model):
    uid = CharField()
    class Meta:
        database = DATABASE 
+
+class Box(Model):
+    name = CharField()
 
 class Bin(Model):
     size = CharField()

@@ -65,7 +65,7 @@ def delete_shrub(id):
 @api.route('/bins/', methods=["GET"])
 def get_all_bins():
     try:
-        bins = [model_to_dict(bin) for bin in models.Bin.select()]
+        bins = [model_to_dict(binn) for binn in models.Bin.select()]
         print(bins)
         return jsonify(data=bins, status={"code": 200, "message":"success"})
     except models.DoesNotExist:
