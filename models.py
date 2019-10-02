@@ -7,8 +7,8 @@ import datetime
 import os
 
 #DATABASE = PostgresqlDatabase('junk_in_my_trunk')
-#DATABASE = connect(os.environ.get('DATABASE_URL'))
-DATABASE = SqliteDatabase('trunksale8.sqlite')
+DATABASE = connect(os.environ.get('DATABASE_URL'))
+#DATABASE = SqliteDatabase('trunksale8.sqlite')
 
 class User(UserMixin, Model):
    username = CharField()
