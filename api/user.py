@@ -30,6 +30,7 @@ def get_user():
     print(payload)
     try: 
         user = [model_to_dict(user) for user in models.User.select().where(models.User.uid == payload)]
+        print(user)
         return jsonify(data=user, status={"code": 200, "message":"success"})
     except models.DoesNotExist:
         return jsonify(data={}, status={"code": 401, "message": "seems to be a problem retrieving"})
