@@ -6,7 +6,7 @@ from playhouse.db_url import connect
 import datetime
 import os
 
-#DATABASE = PostgresqlDatabase('junk')
+#DATABASE = PostgresqlDatabase('junk3')
 DATABASE = connect(os.environ.get('DATABASE_URL'))
 #DATABASE = SqliteDatabase('trunksale8.sqlite')
 
@@ -29,10 +29,9 @@ class Bin(Model):
 class Item(Model):
     fileName1 = CharField()
     fileName2 = CharField()
-    average_red = IntegerField()
-    average_green = IntegerField()
-    average_blue = IntegerField()
+    color = TextField()
     image = CharField()
+    thumb = CharField()
     description = TextField()
     bin = ForeignKeyField(Bin, backref='item')
     price = FloatField()

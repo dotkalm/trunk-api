@@ -10,15 +10,23 @@ api = Blueprint('api', 'api2', url_prefix="/api/v1")
 # added api2 to second arg in above line bc was getting errors from 'api'
 
 def color_value(form_picture):
-   output_size = (1, 1)
+   output_size = (10, 10)
    i = Image.open(form_picture)
    i.thumbnail(output_size)
    dims = i.size
    print(i.size, '<--- image size')
    pix = i.load()
-   rgb_values = pix[0,0]
-   return rgb_values
-
+   color_str = ''
+   for x in range (0,i.size[0]):
+       for y in range (0,i.size[1]):
+           rgb_values = pix[x,y]
+           count = (x,y)
+           key_val = str(count) + '\t' + str(rgb_values)
+           print(key_val)
+           color_str = color_str + key_val + '\n'
+           #color_dict.join(key_val)
+   print(color_str)
+   return color_str 
 @api.route('/bins/', methods=["POST"])
 def create_bin():
     print(request, '<--request')
@@ -39,9 +47,7 @@ def create_junk():
     print(payload, '<-- payload')
     print(dict_file, '<--dict_file')
     color = color_value(dict_file['file'])
-    payload['average_red'] = color[0]
-    payload['average_green'] = color[1]
-    payload['average_blue'] = color[2]
+    payload['color'] = color 
     print(payload, '<-payload')
     item = models.Item.create(**payload)
     item_dict = model_to_dict(item)
