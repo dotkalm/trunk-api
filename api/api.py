@@ -27,6 +27,17 @@ def color_value(form_picture):
            #color_dict.join(key_val)
    print(color_str)
    return color_str 
+
+def avg_color(form_picture):
+    output_size = (1,1)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    dims = i.size
+    print(i.size, '<--- image size')
+    pix = i.load()
+    rgb_values = pix[0,0]
+    return rgb_values
+
 @api.route('/bins/', methods=["POST"])
 def create_bin():
     print(request, '<--request')
@@ -47,6 +58,10 @@ def create_junk():
     print(payload, '<-- payload')
     print(dict_file, '<--dict_file')
     color = color_value(dict_file['file'])
+    avgRGB = avg_color(dict_file['file'])
+    payload['avgR'] = avgRGB[0]
+    payload['avgG'] = avgRGB[1]
+    payload['avgB'] = avgRGB[2]
     payload['color'] = color 
     print(payload, '<-payload')
     item = models.Item.create(**payload)
