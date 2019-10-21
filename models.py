@@ -6,8 +6,8 @@ from playhouse.db_url import connect
 import datetime
 import os
 
-#DATABASE = PostgresqlDatabase('junk')
-DATABASE = connect(os.environ.get('DATABASE_URL'))
+DATABASE = PostgresqlDatabase('junk')
+#DATABASE = connect(os.environ.get('DATABASE_URL'))
 #DATABASE = SqliteDatabase('trunksale8.sqlite')
 
 class User(UserMixin, Model):
